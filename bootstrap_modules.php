@@ -3,18 +3,14 @@
 include_once('bootstrap.php');
 
 // Enable all modules we can find
-$modules_iterator = new DirectoryIterator(MODPATH);
 
-$modules = array();
+$modules_temp = explode($_ENV['KOHANA_MODULES']);
 
-foreach ($modules_iterator as $module)
+foreach ($modules_temp as $module)
 {
-	if ($module->isDir())
-	{
-		$modules[$module->getFilename()] = MODPATH.$module->getFilename();
-	}
+	$modules[$module] = MODPATH.$module;
 }
 
 Kohana::modules(Kohana::modules() + $modules);
 
-unset ($modules_iterator, $modules, $module);
+unset ($modules_temp, $modules, $module);
