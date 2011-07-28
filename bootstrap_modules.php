@@ -3,8 +3,7 @@
 include_once('bootstrap.php');
 
 // Enable all modules we can find
-
-$modules_temp = explode($_ENV['KOHANA_MODULES']);
+$modules_temp = explode(',', $_SERVER['KOHANA_MODULES']);
 
 foreach ($modules_temp as $module)
 {
